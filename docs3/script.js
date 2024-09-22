@@ -2,8 +2,9 @@
 const addNoteBtn = document.getElementById('add-note-btn');
 const notesContainer = document.getElementById('notes-container');
 const searchBar = document.getElementById('search-bar');
-const themeToggle = document.getElementById('theme-toggle');
-const exportBtn = document.getElementById('export-notes-btn');
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const voiceInputBtn = document.getElementById('voice-input-btn');
+let isDarkMode = false;
 
 // Array to store notes
 let notes = JSON.parse(localStorage.getItem('notes')) || [];
@@ -14,28 +15,50 @@ displayNotes();
 // Add event listener for the Add Note button
 addNoteBtn.addEventListener('click', addNote);
 
+// Add event listener for dark mode toggle
+darkModeToggle.addEventListener('click', toggleDarkMode);
+
+// Voice Input for Note Content
+voiceInputBtn.addEventListener('click', () => {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-US';  // You can set other languages as well
+
+    recognition.onstart = function () {
+        voiceInputBtn.textContent = 'Listening...';
+    };
+
+    recognition.onresult = function (event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('note-content').value = transcript;
+        voiceInputBtn.textContent = '🎤 Voice Input';
+    };
+
+    recognition.onerror = function () {
+        voiceInputBtn.textContent = '🎤 Voice Input';
+        alert('Voice recognition error. Please try again.');
+    };
+
+    recognition.start();
+});
+
 // Function to add a new note
 function addNote() {
     const date = document.getElementById('note-date').value;
     const subject = document.getElementById('note-subject').value;
     const content = document.getElementById('note-content').value;
-    const priority = document.getElementById('note-priority').value;
 
     if (!date || !subject || !content) {
         alert('Please fill in all fields!');
         return;
     }
 
-    // Create note object
     const newNote = {
         id: Date.now(),
         date: date,
         subject: subject,
-        content: content,
-        priority: priority,
+        content: content
     };
 
-    // Add note to array and local storage
     notes.push(newNote);
     localStorage.setItem('notes', JSON.stringify(notes));
     
@@ -45,24 +68,29 @@ function addNote() {
     document.getElementById('note-date').value = '';
     document.getElementById('note-subject').value = '';
     document.getElementById('note-content').value = '';
-    document.getElementById('note-priority').value = 'low';
 }
 
 // Function to display notes
-function displayNotes() {
+function displayNotes(filteredNotes = notes) {
     notesContainer.innerHTML = '';
 
-    notes.forEach(note => {
+    if (filteredNotes.length === 0 && notes.length > 0) {
+        alert('No notes found!');
+        return;
+    }
+
+    filteredNotes.forEach(note => {
         const noteElement = document.createElement('div');
-        noteElement.classList.add('note');
+        noteElement.classList.add('note-box');
 
         noteElement.innerHTML = `
+            <div class="note-header">
+                <div class="note-date">${note.date}</div>
+                <button class="edit-btn" onclick="editNote(${note.id})">✏️</button>
+                <button class="delete-btn" onclick="deleteNote(${note.id})">🗑️</button>
+            </div>
             <div class="note-subject">${note.subject}</div>
-            <div class="note-date">${note.date}</div>
             <div class="note-content">${note.content}</div>
-            <div class="note-priority">Priority: ${note.priority}</div>
-            <button class="edit-btn" onclick="editNote(${note.id})">Edit</button>
-            <button class="delete-btn" onclick="deleteNote(${note.id})">Delete</button>
         `;
 
         notesContainer.appendChild(noteElement);
@@ -83,9 +111,7 @@ function editNote(id) {
     document.getElementById('note-date').value = noteToEdit.date;
     document.getElementById('note-subject').value = noteToEdit.subject;
     document.getElementById('note-content').value = noteToEdit.content;
-    document.getElementById('note-priority').value = noteToEdit.priority;
 
-    // Remove the note to be edited from the array
     notes = notes.filter(note => note.id !== id);
     localStorage.setItem('notes', JSON.stringify(notes));
 }
@@ -94,11 +120,37 @@ function editNote(id) {
 searchBar.addEventListener('keyup', function () {
     const searchTerm = searchBar.value.toLowerCase();
     const filteredNotes = notes.filter(note =>
-        note.subject.toLowerCase().includes(searchTerm)
+        note.subject.toLowerCase().includes(searchTerm) ||
+        note.content.toLowerCase().includes(searchTerm)
     );
 
-    // Clear and display filtered notes
-    notesContainer.innerHTML = '';
+    displayNotes(filteredNotes);
+});
 
-    filteredNotes.forEach(note => {
-        const noteElement = document.createElement
+// Function to toggle dark mode
+function toggleDarkMode() {
+    isDarkMode = !isDarkMode;
+    document.body.classList.toggle('dark-mode');
+    if (isDarkMode) {
+        darkModeToggle.style.backgroundColor = 'white';
+        darkModeToggle.innerHTML = '☀️';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        darkModeToggle.style.backgroundColor = '#4CAF50';
+        darkModeToggle.innerHTML = '🌙';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Check local storage for theme preference on load
+(function applySavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.style.backgroundColor = 'white';
+        darkModeToggle.innerHTML = '☀️';
+        isDarkMode = true;
+    }
+})();
+
+
