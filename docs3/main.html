@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNOTES - Take Your Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>DNOTES - Make Notes with Ease</h1>
+        <p>A rebellion-themed note-taking app that makes note management simple and limitless.</p>
+    </header>
+
+    <main>
+        <section id="note-input">
+            <h2>Add a New Note</h2>
+            <input type="datetime-local" id="note-date" placeholder="Date & Time" required>
+            <input type="text" id="note-subject" placeholder="Subject" required>
+            <textarea id="note-content" placeholder="Enter your note here..." required></textarea>
+            <select id="note-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button id="add-note-btn">Add Note</button>
+        </section>
+
+        <section id="search-notes">
+            <input type="text" id="search-bar" placeholder="Search Notes by Subject...">
+        </section>
+
+        <section id="note-list">
+            <h2>Your Notes</h2>
+            <div id="notes-container"></div>
+        </section>
+
+        <section id="theme-section">
+            <label for="theme-toggle">Toggle Theme:</label>
+            <input type="checkbox" id="theme-toggle">
+        </section>
+
+        <button id="export-notes-btn">Export Notes</button>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
