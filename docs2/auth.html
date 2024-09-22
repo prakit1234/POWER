@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNOTES - Login/Register</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styling for forms */
+        form {
+            display: none; /* Initially hide both forms */
+        }
+
+        form.active {
+            display: block; /* Show active form */
+        }
+
+        .toggle-link {
+            color: #ff6347; /* Link color */
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">DNOTES - Login/Register</h1>
+    </header>
+
+    <main>
+        <section id="auth-section">
+            <!-- Login Form -->
+            <form id="login-form" class="active">
+                <h2>Login</h2>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button class="button" id="login-btn" type="button">Login</button>
+                <p>Don't have an account? <span class="toggle-link" id="show-register">Register here</span></p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form">
+                <h2>Register</h2>
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button class="button" id="register-btn" type="button">Register</button>
+                <p>Already have an account? <span class="toggle-link" id="show-login">Login here</span></p>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
