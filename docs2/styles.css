@@ -1,0 +1,66 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #222; /* Dark background for rebellion theme */
+    color: #ffffff; /* White text for contrast */
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header */
+header {
+    margin-bottom: 50px;
+}
+
+#title {
+    font-size: 50px;
+    color: #ff4500; /* Rebellious orange color */
+    text-shadow: 2px 2px 10px rgba(255, 69, 0, 0.7); /* Glowing effect */
+}
+
+/* Auth Section Styling */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #ff4500;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff6347;
+}
+
+.toggle-link {
+    color: #ff6347;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 15px;
+}
