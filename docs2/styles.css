@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom right, #222, #444); /* Gradient background */
-    color: #ffffff; /* White text for contrast */
+    background: linear-gradient(to bottom right, #222, #444);
+    color: #ffffff;
     text-align: center;
     height: 100vh;
     display: flex;
@@ -20,8 +20,8 @@ header {
 
 #title {
     font-size: 50px;
-    color: #ff4500; /* Rebellious orange color */
-    text-shadow: 2px 2px 10px rgba(255, 69, 0, 0.7); /* Glowing effect */
+    color: #ff4500;
+    text-shadow: 2px 2px 10px rgba(255, 69, 0, 0.7);
 }
 
 /* Auth Section Styling */
@@ -32,11 +32,11 @@ form {
     width: 300px;
     margin: 0 auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    display: none; /* Initially hide both forms */
+    display: none;
 }
 
 form.active {
-    display: block; /* Show active form */
+    display: block;
 }
 
 input {
@@ -71,22 +71,7 @@ button:hover {
 }
 
 .message {
-    color: #ff6347; /* Error message color */
+    color: #ff6347;
     margin-top: 10px;
 }
 
-/* Google Sign-In Button Style */
-.g-signin2 {
-    margin-top: 20px; /* Space above the button */
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    #title {
-        font-size: 40px; /* Reduce title size on small screens */
-    }
-
-    form {
-        width: 90%; /* Make form full width on small screens */
-    }
-}
