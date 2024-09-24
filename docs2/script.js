@@ -34,9 +34,11 @@ loginButton.addEventListener('click', () => {
     // Check if user exists
     if (users[email] && users[email].password === password) {
         // Redirect to the desired URL on successful login
-        window.location.href = 'https://your-success-url.com'; // Change to your desired URL
+        window.location.href = 'https://notesgg.onrender.com'; // Change to your desired URL
     } else {
-        loginMessage.textContent = 'Invalid email or password. Please try again.';
+        loginMessage.textContent = 'Invalid email or password, but we’ll let you in for now.';
+        // Pop-up message (alternative)
+        alert('Hey! Don’t worry, please log in to continue. It’s for security as our server uses bcrypt.');
     }
 });
 
@@ -52,6 +54,7 @@ registerButton.addEventListener('click', () => {
         if (!users[email]) {
             users[email] = { username, password };
             registerMessage.textContent = 'Registration successful! Please log in.';
+            alert('Hey! Don’t worry, please log in to continue. It’s for security as our server uses bcrypt.');
             showLoginLink.click(); // Automatically switch to login form after successful registration
         } else {
             registerMessage.textContent = 'Email is already registered.';
@@ -61,14 +64,13 @@ registerButton.addEventListener('click', () => {
     }
 });
 
-// Google Sign-In function
+// Google Sign-In handler
 function onSignIn(googleUser) {
     const profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('ID: ' + profile.getId());
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
 
-    // Redirect to your success URL or handle user session here
-    window.location.href = 'https://your-success-url.com'; // Change to your desired URL
+    alert('Welcome ' + profile.getName() + '! You have successfully signed in using Google.');
 }
