@@ -5,6 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DNOTES - Rebellion Awaits</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Additional styles for button and layout */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #222; /* Dark background */
+      color: #ffffff;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-container {
+      position: relative;
+      z-index: 1; /* Ensure the text is above the background */
+    }
+
+    .main-title {
+      font-size: 50px;
+      color: #ff4500; /* Rebellious color */
+      text-shadow: 2px 2px 10px rgba(255, 69, 0, 0.7);
+    }
+
+    .description {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .get-started-button {
+      background-color: #ff4500;
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    .get-started-button:hover {
+      background-color: #ff6347;
+    }
+
+    /* Background animation */
+    .spooky-texture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('path-to-your-background-image.jpg'); /* Add your background image here */
+      background-size: cover;
+      z-index: 0; /* Background behind content */
+      opacity: 0.5; /* Adjust opacity as needed */
+    }
+  </style>
 </head>
 <body>
 
@@ -13,7 +71,7 @@
     <p class="description">Digital notes by Team Rebellion</p>
     
     <!-- Get Started Button -->
-    <a href="https://login-kvur.onrender.com"</a>
+    <a href="https://login-kvur.onrender.com" class="get-started-button">Get Started</a>
   </div>
 
   <!-- Background animation -->
@@ -21,3 +79,4 @@
 
 </body>
 </html>
+
