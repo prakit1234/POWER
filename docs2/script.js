@@ -53,3 +53,28 @@ loginButton.addEventListener('click', () => {
         loginMessage.textContent = "Invalid email or password!";
     }
 });
+
+// Google Sign-In Functionality
+function onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    const email = profile.getEmail();
+
+    // Here, you can check if the user exists in your local storage
+    if (!users[email]) {
+        // If not, register the user
+        users[email] = { username: profile.getName(), password: "" }; // You can choose to not store password
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    // Redirect to the main page after successful login
+    window.location.href = "https://notesgg.onrender.com"; // Redirect URL
+}
+
+// Google Sign Out Functionality
+function signOut() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+        console.log('User signed out.');
+    });
+}
+
