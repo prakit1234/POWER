@@ -76,7 +76,7 @@ button:hover {
 }
 
 /* Google Sign-In Button Style */
-.g_signin2 {
+.g-signin2 {
     margin-top: 20px; /* Space above the button */
 }
 
