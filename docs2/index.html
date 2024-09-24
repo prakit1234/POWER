@@ -20,6 +20,11 @@
             cursor: pointer;
             text-decoration: underline;
         }
+
+        .message {
+            color: #ff6347; /* Error message color */
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -32,24 +37,28 @@
             <!-- Login Form -->
             <form id="login-form" class="active">
                 <h2>Login</h2>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
                 <button class="button" id="login-btn" type="button">Login</button>
                 <p>Don't have an account? <span class="toggle-link" id="show-register">Register here</span></p>
+                <p id="login-message" class="message"></p>
             </form>
 
             <!-- Register Form -->
             <form id="register-form">
                 <h2>Register</h2>
-                <input type="text" placeholder="Username" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
+                <input type="text" id="registerUsername" placeholder="Username" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Password" required>
                 <button class="button" id="register-btn" type="button">Register</button>
                 <p>Already have an account? <span class="toggle-link" id="show-login">Login here</span></p>
+                <p id="register-message" class="message"></p>
             </form>
         </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/5.0.1/bcrypt.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
