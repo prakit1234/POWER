@@ -4,28 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNOTES - Login/Register</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Additional styling for forms */
-        form {
-            display: none; /* Initially hide both forms */
-        }
-
-        form.active {
-            display: block; /* Show active form */
-        }
-
-        .toggle-link {
-            color: #ff6347; /* Link color */
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .message {
-            color: #ff6347; /* Error message color */
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script> <!-- Google API -->
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> <!-- Replace with your client ID -->
 </head>
 <body>
     <header>
@@ -54,11 +35,13 @@
                 <p>Already have an account? <span class="toggle-link" id="show-login">Login here</span></p>
                 <p id="register-message" class="message"></p>
             </form>
+
+            <!-- Google Sign-In Button -->
+            <div class="g_signin2" data-onsuccess="onSignIn"></div>
         </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/5.0.1/bcrypt.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/5.0.1/bcrypt.min.js"></script> <!-- Bcrypt library for password hashing -->
+    <script src="script.js"></script> <!-- Link to JavaScript file -->
 </body>
 </html>
-
