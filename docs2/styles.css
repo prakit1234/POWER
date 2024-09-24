@@ -32,6 +32,11 @@ form {
     width: 300px;
     margin: 0 auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    display: none; /* Initially hide both forms */
+}
+
+form.active {
+    display: block; /* Show active form */
 }
 
 input {
@@ -68,4 +73,20 @@ button:hover {
 .message {
     color: #ff6347; /* Error message color */
     margin-top: 10px;
+}
+
+/* Google Sign-In Button Style */
+.g_signin2 {
+    margin-top: 20px; /* Space above the button */
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    #title {
+        font-size: 40px; /* Reduce title size on small screens */
+    }
+
+    form {
+        width: 90%; /* Make form full width on small screens */
+    }
 }
