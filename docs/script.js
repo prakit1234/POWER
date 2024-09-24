@@ -22,5 +22,5 @@ const getStartedButton = document.getElementById('get-started');
 // Add event listener to the button
 getStartedButton.addEventListener('click', () => {
     // Redirect to the subsite (e.g., 'docs2' subdirectory)
-    window.location.href = '.https://prakit1234.github.io/POWER/docs2/'; // Adjust the URL as needed
+    window.location.href = '.https://prakit1234.github.io/POWER/docs2/index.html'; // Adjust the URL as needed
 });
