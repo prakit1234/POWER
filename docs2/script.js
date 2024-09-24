@@ -26,47 +26,40 @@ showLoginLink.addEventListener('click', () => {
     loginForm.classList.add('active');
 });
 
-// Register functionality
-registerButton.addEventListener('click', async () => {
-    const username = document.getElementById('registerUsername').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
+// Handle Login
+loginButton.addEventListener('click', () => {
+    const email = loginForm.querySelector('input[type="email"]').value;
+    const password = loginForm.querySelector('input[type="password"]').value;
 
-    // Check if the user already exists
-    if (users[username]) {
-        registerMessage.textContent = 'User already exists.';
-        return;
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    // Store user data in memory (or use sessionStorage)
-    users[username] = { email, password: hashedPassword };
-
-    registerMessage.textContent = 'User registered successfully!';
-    registerForm.reset();
-});
-
-// Login functionality
-loginButton.addEventListener('click', async () => {
-    const username = document.getElementById('loginEmail').value; // Using email for login
-    const password = document.getElementById('loginPassword').value;
-
-    // Check if the user exists
-    const user = users[username];
-    if (!user) {
-        loginMessage.textContent = 'User not found.';
-        return;
-    }
-
-    // Verify the password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-        loginMessage.textContent = 'Login successful!';
-        sessionStorage.setItem('loggedInUser', username); // Store username in session storage
-        // Redirect or do something after successful login
-        // e.g., window.location.href = 'dashboard.html';
+    // Check if user exists
+    if (users[email] && users[email].password === password) {
+        // Redirect to the desired URL on successful login
+        window.location.href = 'https://your-success-url.com'; // Change to your desired URL
     } else {
-        loginMessage.textContent = 'Invalid password.';
+        loginMessage.textContent = 'Invalid email or password. Please try again.';
     }
 });
+
+// Handle Registration
+registerButton.addEventListener('click', () => {
+    const username = registerForm.querySelector('input[type="text"]').value;
+    const email = registerForm.querySelector('input[type="email"]').value;
+    const password = registerForm.querySelector('input[type="password"]').value;
+
+    // Basic validation
+    if (username && email && password) {
+        // Store user info in memory (for demo purposes)
+        if (!users[email]) {
+            users[email] = { username, password };
+            registerMessage.textContent = 'Registration successful! Please log in.';
+            // Optionally redirect after registration (or show login form)
+            // window.location.href = 'https://notesgg.onrender.com'; // Change to your desired URL
+            showLoginLink.click(); // Automatically switch to login form after successful registration
+        } else {
+            registerMessage.textContent = 'Email is already registered.';
+        }
+    } else {
+        registerMessage.textContent = 'Please fill in all fields.';
+    }
+});
+
