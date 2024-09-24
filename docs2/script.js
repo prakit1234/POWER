@@ -21,9 +21,9 @@ showLoginLink.addEventListener('click', () => {
 
 // Redirection logic for login and register buttons
 loginButton.addEventListener('click', () => {
-    window.location.href = 'https://prakit1234.github.io/POWER/docs3/index.html'; // Redirect to login subsite
+    window.location.href = 'https://login-kvur.onrender.com/'; // Redirect to login subsite
 });
 
 registerButton.addEventListener('click', () => {
-    window.location.href = 'https://prakit1234.github.io/POWER/docs3/index.html'; // Redirect to register subsite
+    window.location.href = 'https://login-kvur.onrender.com/'; // Redirect to register subsite
 });
