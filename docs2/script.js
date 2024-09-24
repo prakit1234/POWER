@@ -12,8 +12,8 @@ const registerButton = document.getElementById('register-btn');
 const loginMessage = document.getElementById('login-message');
 const registerMessage = document.getElementById('register-message');
 
-// Sample in-memory storage (for demo purposes, use session storage)
-let users = {};
+// Sample in-memory storage (for demo purposes, use local storage)
+let users = JSON.parse(localStorage.getItem('users')) || {};
 
 // Toggle between forms
 showRegisterLink.addEventListener('click', () => {
@@ -26,51 +26,30 @@ showLoginLink.addEventListener('click', () => {
     loginForm.classList.add('active');
 });
 
-// Handle Login
-loginButton.addEventListener('click', () => {
-    const email = loginForm.querySelector('input[type="email"]').value;
-    const password = loginForm.querySelector('input[type="password"]').value;
-
-    // Check if user exists
-    if (users[email] && users[email].password === password) {
-        // Redirect to the desired URL on successful login
-        window.location.href = 'https://notesgg.onrender.com'; // Change to your desired URL
-    } else {
-        loginMessage.textContent = 'Invalid email or password, but we’ll let you in for now.';
-        // Pop-up message (alternative)
-        alert('Hey! Don’t worry, please log in to continue. It’s for security as our server uses bcrypt.');
-    }
-});
-
-// Handle Registration
+// Handle registration
 registerButton.addEventListener('click', () => {
-    const username = registerForm.querySelector('input[type="text"]').value;
-    const email = registerForm.querySelector('input[type="email"]').value;
-    const password = registerForm.querySelector('input[type="password"]').value;
+    const username = document.getElementById('registerUsername').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
 
-    // Basic validation
-    if (username && email && password) {
-        // Store user info in memory (for demo purposes)
-        if (!users[email]) {
-            users[email] = { username, password };
-            registerMessage.textContent = 'Registration successful! Please log in.';
-            alert('Hey! Don’t worry, please log in to continue. It’s for security as our server uses bcrypt.');
-            showLoginLink.click(); // Automatically switch to login form after successful registration
-        } else {
-            registerMessage.textContent = 'Email is already registered.';
-        }
+    if (users[email]) {
+        registerMessage.textContent = "User already exists!";
     } else {
-        registerMessage.textContent = 'Please fill in all fields.';
+        users[email] = { username, password };
+        localStorage.setItem('users', JSON.stringify(users));
+        registerMessage.textContent = "Registration successful! You can now log in.";
     }
 });
 
-// Google Sign-In handler
-function onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId());
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
+// Handle login
+loginButton.addEventListener('click', () => {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
 
-    alert('Welcome ' + profile.getName() + '! You have successfully signed in using Google.');
-}
+    if (users[email] && users[email].password === password) {
+        // Redirect to the main page after successful login
+        window.location.href = "https://notesgg.onrender.com"; // Redirect URL
+    } else {
+        loginMessage.textContent = "Invalid email or password!";
+    }
+});
