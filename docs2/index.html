@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNOTES - Login/Register</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script> <!-- Google API -->
-    <meta name="google-signin-client_id" content="435125706084-tnls8st31m1gsu9og141ped4f2tjkp41.apps.googleusercontent.com"> <!-- Replace with your client ID -->
 </head>
 <body>
     <header>
@@ -35,13 +33,10 @@
                 <p>Already have an account? <span class="toggle-link" id="show-login">Login here</span></p>
                 <p id="register-message" class="message"></p>
             </form>
-
-            <!-- Google Sign-In Button -->
-            <div class="g-signin2" data-onsuccess="onSignIn"></div> <!-- Google sign-in button -->
         </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcrypt.js/5.0.1/bcrypt.min.js"></script> <!-- Bcrypt for password hashing -->
     <script src="script.js"></script> <!-- Link to JavaScript file -->
 </body>
 </html>
+
