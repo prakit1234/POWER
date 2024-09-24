@@ -52,8 +52,6 @@ registerButton.addEventListener('click', () => {
         if (!users[email]) {
             users[email] = { username, password };
             registerMessage.textContent = 'Registration successful! Please log in.';
-            // Optionally redirect after registration (or show login form)
-            // window.location.href = 'https://notesgg.onrender.com'; // Change to your desired URL
             showLoginLink.click(); // Automatically switch to login form after successful registration
         } else {
             registerMessage.textContent = 'Email is already registered.';
@@ -63,3 +61,14 @@ registerButton.addEventListener('click', () => {
     }
 });
 
+// Google Sign-In function
+function onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+
+    // Redirect to your success URL or handle user session here
+    window.location.href = 'https://your-success-url.com'; // Change to your desired URL
+}
